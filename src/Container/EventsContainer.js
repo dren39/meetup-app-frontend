@@ -3,11 +3,12 @@ import EventCard from '../Components/EventCard';
 import {Route, Switch, Link} from 'react-router-dom';
 import EventDetails from '../Components/EventDetails';
 import CreateEventForm from '../Components/CreateEventForm';
+import Welcome from '../Components/Welcome';
 
 
 class EventsContainer extends Component {
   state = {
-    eventsArray: [],
+    eventsArray: null
     // reserveChairArray: []
   }
 
@@ -18,21 +19,29 @@ class EventsContainer extends Component {
   }
 
   renderEventCards = () => {
-    return (
-      <>
-        {this.state.eventsArray.map(event => <EventCard key={event.id} event={event} />)}
-        <Link to='/events/new'>
-          <button>Add new event</button>
-        </Link>
-      </>
-    )
+    if (this.state.eventsArray) {
+      return (
+        <>
+          {this.state.eventsArray.map(event => <EventCard key={event.id} event={event} />)}
+          <Link to='/events/new'>
+            <button>Add new event</button>
+          </Link>
+        </>
+      )
+    } else {
+      return <Welcome />
+    }
+
   }
 
   renderEventDetail = (routerProps) => {
-    const id = parseInt(routerProps.match.params.id)
-    const event =  this.state.eventsArray.find(eventObj => eventObj.id === id);
-    console.log(event.id);
-    return <EventDetails event={event} reserveChair={this.reserveChair} reserveChairArray={this.state.reserveChairArray} deleteHandler={this.deleteHandler} patchHandler={this.patchHandler} user={this.props.user}/>
+    if (this.state.eventsArray) {
+      const id = parseInt(routerProps.match.params.id)
+      const event =  this.state.eventsArray.find(eventObj => eventObj.id === id);
+      return <EventDetails event={event} reserveChair={this.reserveChair} reserveChairArray={this.state.reserveChairArray} deleteHandler={this.deleteHandler} patchHandler={this.patchHandler} user={this.props.user}/>
+    } else {
+      return <Welcome />
+    }
   }
 
   reserveChair = (admin, userObj, eventObj) => {
@@ -48,6 +57,10 @@ class EventsContainer extends Component {
         event_id: eventObj.id
       })
     })
+      const newArray = [...this.state.eventsArray]
+      const foundEvent = newArray.find(meetUpObj => meetUpObj.id === eventObj.id)
+      foundEvent.available -= 1;
+      this.setState({eventsArray: newArray})
     // const newArray = [...this.state.reserveChairArray, index]
     // this.setState({reserveChairArray: newArray}, console.log(this.state.reserveChairArray))
   };
@@ -92,10 +105,6 @@ class EventsContainer extends Component {
   renderCreateForm = () => {
     return <CreateEventForm submitEventHandler={this.submitEventHandler}/>
   };
-
-  // renderEditForm = (eventObj) => {
-  //   return <EditEventForm editHandler={this.editHandler} event={eventObj}/>
-  // };
 
   patchHandler = (eventObj) => {
     fetch(`http://localhost:3000/events/${eventObj.id}`, {

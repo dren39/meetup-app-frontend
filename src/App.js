@@ -1,9 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component} from 'react';
 import EventsContainer from './Container/EventsContainer';
 import UsersContainer from './UsersContainer/UsersContainer';
 import Navbar from './Navbar';
 import Welcome from './Components/Welcome';
-import EventDetails from './Components/EventDetails';
 import {Route, Switch} from 'react-router-dom';
 
 

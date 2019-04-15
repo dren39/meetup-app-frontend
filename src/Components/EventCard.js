@@ -13,14 +13,6 @@ class EventCard extends React.Component {
     return <EventDetails event={this.props.event} patchHandler={this.props.patchHandler}/>
   };
 
-  // doIRender = () => {
-  //   return this.state.display ? this.showDetails() : null
-  // }
-  //
-  // changeDisplay = () => {
-  //   this.setState({display: !this.state.display})
-  // }
-
   render () {
     return (
       <div>
