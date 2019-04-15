@@ -12,3 +12,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.seats {
+  background-image: url("https://visualpharm.com/assets/705/Chair-595b40b75ba036ed117d929b.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotateX(50deg);
+  height: 100px;
+  width: 100px;
+  /* position: absolute; */
+  left: 300px;
+}
