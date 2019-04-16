@@ -13,9 +13,19 @@ class EventsContainer extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/events')
+    let token = localStorage.getItem("token")
+    // console.log('THIS IS TOKEN', token);
+    fetch('http://localhost:3000/events', {
+      method: 'GET',
+      headers: {
+        Authorization: `${token}`
+      }
+    })
     .then(response => response.json())
-    .then(events => this.setState({eventsArray: events}))
+    .then(events => {
+      console.log('THIS IS EVENTS', events);
+      this.setState({eventsArray: events})
+    })
   }
 
   renderEventCards = () => {
@@ -122,15 +132,14 @@ class EventsContainer extends Component {
         price: eventObj.price,
       })
     })
-    // .then(response => response.json())
-    // .then(obj => {
-    //   const newArray = [...this.state.eventsArray].map((eventObj,index) => eventObj.id === obj.id ? newArray.splice(index, 1, obj): null);
-    //   this.setState({eventsArray: newArray})
-    // })
+    .then(response => response.json())
+    .then(obj => {
+      const newArray = [...this.state.eventsArray, obj]
+      this.setState({eventsArray: newArray})
+    })
   };
 
   render () {
-    console.log(this.state.eventsArray);
     return(
       <>
         <Switch>
