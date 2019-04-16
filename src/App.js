@@ -5,9 +5,7 @@ import Navbar from './Navbar';
 import Welcome from './Components/Welcome';
 import LoginUser from './UserComponents/LoginUser';
 import CreateUser from './UserComponents/CreateUser'
-import {Route, Switch} from 'react-router-dom';
-
-
+import {Route, Switch, withRouter} from 'react-router-dom';
 
 class App extends Component {
 
@@ -17,14 +15,18 @@ class App extends Component {
 
   componentDidMount() {
     let token = localStorage.getItem("token");
-    fetch("http://localhost:3000/get_user", {
-      method: "GET",
-      headers: {
-        authorization: `${token}`
-      }
-    })
-    .then(response => response.json())
-    .then(data => this.setState({user:data.user}))
+    if (token) {
+      fetch("http://localhost:3000/get_user", {
+        method: "GET",
+        headers: {
+          authorization: `${token}`
+        }
+      })
+      .then(response => response.json())
+      .then(data => this.setState({user:data.user}))
+    } else {
+      this.props.history.push('/welcome')
+    }
   }
 
   // saveUser = (userObj) => {
@@ -110,7 +112,7 @@ class App extends Component {
       <>
         <Navbar user={this.state.user} logout={this.logout}/>
         <Switch>
-          <Route path='/profile' render={()=> <UserProfile user={this.state.user}/>}/>
+          <Route path='/profile' render={()=> this.state.user.username ? <UserProfile user={this.state.user}/> : this.props.history.push("/welcome") } />
           <Route path='/welcome' component={Welcome} />
           <Route path='/signup' component={this.renderCreateUserForm}/>
           <Route path='/login' component={this.renderLoginUserForm}/>
@@ -121,4 +123,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

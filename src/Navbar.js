@@ -9,7 +9,7 @@ const Navbar = (props) =>
   </NavLink>
 <br/>
 
-  {props.user ?
+  {props.user.username ?
     <NavLink to='/profile'>
       My Profile
     </NavLink> : null }
@@ -25,7 +25,7 @@ const Navbar = (props) =>
     Login
   </NavLink>
 
-  {props.user ? <button onClick={props.logout}>Logout</button> : null}
+  {props.user.username ? <button onClick={props.logout}>Logout</button> : null}
 
 </div>
 

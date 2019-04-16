@@ -9,7 +9,6 @@ class UserProfile extends React.Component {
   // };
 
   render () {
-    console.log("WHAt AM I?", typeof this.props.user.events);
     const events = []
     if (this.props.user.events) {
       this.props.user.events.forEach((app,index) => {
@@ -24,7 +23,7 @@ class UserProfile extends React.Component {
         <h3>Username: {this.props.user.username}</h3>
         <h3>Fullname: {this.props.user.fullname}</h3>
         <ul>
-          {events}
+          Your RSVPs: {events}
         </ul>
       </>
     )

@@ -8,8 +8,8 @@ import Welcome from '../Components/Welcome';
 
 class EventsContainer extends Component {
   state = {
-    eventsArray: null
-    // reserveChairArray: []
+    eventsArray: null,
+    reserveChairArray: []
   }
 
   componentDidMount() {
@@ -70,7 +70,8 @@ class EventsContainer extends Component {
       const newArray = [...this.state.eventsArray]
       const foundEvent = newArray.find(meetUpObj => meetUpObj.id === eventObj.id)
       foundEvent.available -= 1;
-      this.setState({eventsArray: newArray})
+      const newReserveArray = [...this.state.reserveChairArray, eventObj];
+      this.setState({eventsArray: newArray, reserveChairArray: newReserveArray})
     // const newArray = [...this.state.reserveChairArray, index]
     // this.setState({reserveChairArray: newArray}, console.log(this.state.reserveChairArray))
   };

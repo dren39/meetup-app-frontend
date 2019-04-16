@@ -14,8 +14,10 @@ class EventDetails extends Component {
   };
 
   chairClickHandler = () => {
-    this.setState({seats: this.state.seats - 1})
-    return this.props.reserveChair(this.state.admin, this.props.user, this.props.event)
+    if (!this.props.reserveChairArray.includes(this.props.event)) {
+      this.setState({seats: this.state.seats - 1})
+      return this.props.reserveChair(this.state.admin, this.props.user, this.props.event)
+    }
   };
 
   renderSeats = (seats) => {
