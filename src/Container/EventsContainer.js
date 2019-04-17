@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import EventCard from '../Components/EventCard';
-import {Route, Switch, Link} from 'react-router-dom';
+import {Route, Switch, Link, withRouter} from 'react-router-dom';
 import EventDetails from '../Components/EventDetails';
 import CreateEventForm from '../Components/CreateEventForm';
 import SearchBar from '../Components/SearchBar';
@@ -113,6 +113,7 @@ class EventsContainer extends Component {
       const newArray = [...this.state.eventsArray].filter(meetingObj => meetingObj.id !== obj.id)
       this.setState({eventsArray: newArray})
     })
+    this.props.history.push('/events')
   };
 
   renderCreateForm = () => {
@@ -168,4 +169,4 @@ class EventsContainer extends Component {
   }
 }
 
-export default EventsContainer;
+export default withRouter(EventsContainer);
