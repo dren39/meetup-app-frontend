@@ -34,11 +34,17 @@ class EventDetails extends Component {
     return <EditEventForm event={this.props.event} patchHandler={this.props.patchHandler}/>
   }
 
+  findAdmin = () => {
+    const foundAppointment = this.props.event.appointments.find(appointment => appointment.admin === true)
+    return foundAppointment.user_id;
+  };
+
   render() {
     console.log(this.props.event.event_date);
     return (
       <>
         <h3>{this.props.event.name}</h3>
+        <p>Hosted by: {this.findAdmin()}</p>
         <p>{this.props.event.description}</p>
         <p>${this.props.event.price}</p>
         <p>Date: {this.props.event.event_date}</p>

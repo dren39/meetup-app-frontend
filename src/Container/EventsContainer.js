@@ -3,18 +3,20 @@ import EventCard from '../Components/EventCard';
 import {Route, Switch, Link} from 'react-router-dom';
 import EventDetails from '../Components/EventDetails';
 import CreateEventForm from '../Components/CreateEventForm';
+import SearchBar from '../Components/SearchBar';
 import Welcome from '../Components/Welcome';
 
 
 class EventsContainer extends Component {
   state = {
     eventsArray: null,
-    reserveChairArray: []
+    reserveChairArray: [],
+    filteredArray: [],
+    searchTerm: ''
   }
 
   componentDidMount() {
     let token = localStorage.getItem("token")
-    // console.log('THIS IS TOKEN', token);
     fetch('http://localhost:3000/events', {
       method: 'GET',
       headers: {
@@ -24,7 +26,7 @@ class EventsContainer extends Component {
     .then(response => response.json())
     .then(events => {
       console.log('THIS IS EVENTS', events);
-      this.setState({eventsArray: events})
+      this.setState({eventsArray: events, filteredArray: events})
     })
   }
 
@@ -32,7 +34,7 @@ class EventsContainer extends Component {
     if (this.state.eventsArray) {
       return (
         <>
-          {this.state.eventsArray.map(event => <EventCard key={event.id} event={event} />)}
+          {this.state.filteredArray.map(event => <EventCard key={event.id} event={event} />)}
           <Link to='/events/new'>
             <button>Add new event</button>
           </Link>
@@ -140,9 +142,21 @@ class EventsContainer extends Component {
     })
   };
 
+  searchHandler = (event) => {
+    this.setState({searchTerm: event.target.value}, this.filterHandler())
+  };
+
+  filterHandler = () => {
+    const filter = this.state.eventsArray.filter(event => {
+      return event.address.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+    })
+    this.setState({filteredArray: filter})
+  };
+
   render () {
     return(
       <>
+        <SearchBar searchHandler={this.searchHandler} searchTerm={this.state.searchTerm}/>
         <Switch>
           <Route path='/events/new' component={this.renderCreateForm}/>
           <Route path='/events/:id' render={this.renderEventDetail} />

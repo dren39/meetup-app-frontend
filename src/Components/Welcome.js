@@ -5,7 +5,7 @@ class Welcome extends React.Component {
   render() {
     return (
       <div>
-        <h1>Welcome to our app</h1>
+        <h1>Welcome to D.E.ze Meetups </h1>
         <Link to="/login">
           Login
         </Link>
