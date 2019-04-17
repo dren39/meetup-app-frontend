@@ -40,6 +40,7 @@ class EventDetails extends Component {
   };
 
   render() {
+
     return (
       <>
         <h3 className="details">{this.props.event.name}</h3>
