@@ -6,6 +6,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(rgba(0, 1, 0.5, 0.6), rgba(0, 0, 0, 0.5)), url('http://lichfieldsfurniture.co.uk/wp-content/uploads/2016/10/Cafe-background-1.jpg');
+	/* opacity: .6; */
+  background-size: 100%;
+  background-repeat: repeat-y;
+
 }
 
 code {
@@ -14,7 +19,7 @@ code {
 }
 
 .seats {
-  background-image: url("https://visualpharm.com/assets/705/Chair-595b40b75ba036ed117d929b.svg");
+  background-image: url("https://www.iconsdb.com/icons/preview/white/chair-6-xxl.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -24,3 +29,4 @@ code {
   /* position: absolute; */
   left: 300px;
 }
+/* https://visualpharm.com/assets/705/Chair-595b40b75ba036ed117d929b.svg */

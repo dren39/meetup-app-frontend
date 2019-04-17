@@ -1,35 +1,47 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import {Nav, Button, Link, Item} from 'react-bootstrap'
 
 
-const Navbar = (props) =>
-<div>
-  <NavLink to='/welcome'>
-    Welcome
-  </NavLink>
-<br/>
+class Navbar extends React.Component {
+  render () {
+    return (
+      <>
 
-  {props.user.username ?
-    <NavLink to='/profile'>
-      My Profile
-    </NavLink> : null }
 
-  <br/>
+        <div className="navbar">
+          <NavLink to='/welcome'>
+            Home
+          </NavLink>
+        <br/>
 
-  <NavLink to='/events'>
-    Events
-  </NavLink>
-  <br/>
+        <NavLink to='/events'>
+          Events
+        </NavLink>
+        <br/>
 
-  <NavLink to='/login'>
-    Login
-  </NavLink>
+        <NavLink to='/login'>
+          Login
+        </NavLink>
 
-  {props.user.username ? <button onClick={props.logout}>Logout</button> : null}
+        {this.props.user.username ? <button onClick={this.props.logout}>Logout</button> : null}
 
-</div>
+        {this.props.user.username ?
+          <NavLink to='/profile'>
+            My Profile
+          </NavLink> : null }
 
-export default Navbar
+        </div>
+      </>
+    )
+  }
+}
+
+export default Navbar;
+// const Navbar = (this.props) =>
+//
+//
+// export default Navbar
 
 // <NavLink to='/signup'>
 //   Signup

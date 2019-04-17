@@ -16,12 +16,14 @@ class EventCard extends React.Component {
   render () {
     return (
       <div>
-        <h3>{this.props.event.name}</h3>
-        <p>{this.props.event.event_date}</p>
-        <p>{this.props.event.event_time}</p>
-        <Link to={`/events/${this.props.event.id}`}>
-          <button>See Details</button>
-        </Link>
+        <div className="event-cards">
+          <h4>{this.props.event.name}</h4>
+          <p>{this.props.event.event_date}</p>
+          <p>{this.props.event.event_time}</p>
+          <Link to={`/events/${this.props.event.id}`}>
+            <button>See Details</button>
+          </Link>
+        </div>
       </div>
     )
   }

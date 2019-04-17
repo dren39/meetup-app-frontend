@@ -20,7 +20,7 @@ class CreateUser extends Component {
 
   render () {
     return (
-        <form onSubmit={this.submitHandler}>
+        <form onSubmit={this.submitHandler} id="signup-form">
           <input type="text" placeholder="Username" name="username" value={this.state.username} onChange={this.changeHandler} />
           <input type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.changeHandler} />
           <input type="text" placeholder="Full name" name="fullname" value={this.state.fullname} onChange={this.changeHandler} />

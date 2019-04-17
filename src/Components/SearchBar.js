@@ -8,7 +8,9 @@ class SearchBar extends React.Component {
 
   render () {
     return (
+      <div id="searchbar">
       <input type="text" value={this.props.searchTerm} onChange={this.props.searchHandler} placeholder="Search by location"/>
+      </div>
     )
   }
 }

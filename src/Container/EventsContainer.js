@@ -33,12 +33,12 @@ class EventsContainer extends Component {
   renderEventCards = () => {
     if (this.state.eventsArray) {
       return (
-        <>
+        <div className="card-container">
           {this.state.filteredArray.map(event => <EventCard key={event.id} event={event} />)}
           <Link to='/events/new'>
             <button>Add new event</button>
           </Link>
-        </>
+        </div>
       )
     } else {
       return <Welcome />
@@ -156,7 +156,7 @@ class EventsContainer extends Component {
   render () {
     return(
       <>
-        <SearchBar searchHandler={this.searchHandler} searchTerm={this.state.searchTerm}/>
+        <SearchBar searchHandler={this.searchHandler} searchTerm={this.state.searchTerm}/><br/>
         <Switch>
           <Route path='/events/new' component={this.renderCreateForm}/>
           <Route path='/events/:id' render={this.renderEventDetail} />

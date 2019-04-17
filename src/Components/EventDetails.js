@@ -22,7 +22,7 @@ class EventDetails extends Component {
 
   renderSeats = (seats) => {
     return [...Array(seats)].map((seat,index) => {
-      return <div key={index} className="seats" onClick={()=>this.chairClickHandler()}/>
+      return <div id="seats"key={index} className="seats" onClick={()=>this.chairClickHandler()}/>
     })
   }
 
@@ -40,17 +40,17 @@ class EventDetails extends Component {
   };
 
   render() {
-    console.log(this.props.event.event_date);
     return (
       <>
-        <h3>{this.props.event.name}</h3>
-        <p>Hosted by: {this.findAdmin()}</p>
-        <p>{this.props.event.description}</p>
-        <p>${this.props.event.price}</p>
-        <p>Date: {this.props.event.event_date}</p>
-        <p>Time: {this.props.event.event_time}</p>
-        <p>{this.props.event.address}</p>
-        <div>Available:{this.renderSeats(this.state.seats)}</div>
+        <h3 className="details">{this.props.event.name}</h3>
+        <p className="details">Hosted by: {this.findAdmin()}</p>
+        <p className="details" className="details">{this.props.event.description}</p>
+        <p className="details">${this.props.event.price}</p>
+        <p className="details">Date: {this.props.event.event_date}</p>
+        <p className="details">Time: {this.props.event.event_time}</p>
+        <p className="details">{this.props.event.address}</p>
+        <p className="details">Available Spots: {this.state.seats}</p>
+        <div className="details" id="seats-container">{this.renderSeats(this.state.seats)}</div>
         <button onClick={() => this.props.deleteHandler(this.props.event)}>Delete this meetup</button>
         <button onClick={this.editHandler}>Edit this meetup</button>
 

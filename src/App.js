@@ -2,10 +2,13 @@ import React, { Component} from 'react';
 import EventsContainer from './Container/EventsContainer';
 import UserProfile from './UserComponents/UserProfile';
 import Navbar from './Navbar';
+import {Nav, Button, Link, Item} from 'react-bootstrap'
+
 import Welcome from './Components/Welcome';
 import LoginUser from './UserComponents/LoginUser';
 import CreateUser from './UserComponents/CreateUser'
 import {Route, Switch, withRouter} from 'react-router-dom';
+import './App.css'
 
 class App extends Component {
 

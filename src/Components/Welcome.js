@@ -5,13 +5,12 @@ class Welcome extends React.Component {
   render() {
     return (
       <div>
-        <h1>Welcome to D.E.ze Meetups </h1>
-        <Link to="/login">
-          Login
-        </Link>
-        <Link to="/signup">
-          Signup
-        </Link>
+        <div id="welcome">
+          <h1 id="welcome-header">Welcome to D.E.ze Meetups </h1>
+          <Link to="/signup">
+            Signup
+          </Link>
+        </div>
       </div>
     )
   }
